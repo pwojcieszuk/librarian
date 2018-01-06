@@ -8,7 +8,7 @@ function getBooksData () {
 
 function createId (collection) {
     const lastRecord = _.last(_.orderBy(collection, ['id']));
-    const biggestId = lastRecord ? lastRecord.id : -1;
+    const biggestId = lastRecord ? lastRecord.id : 0;
     return biggestId + 1;
 }
 
@@ -24,7 +24,15 @@ function setBookData (bookData) {
     }
 
     localStorage.setItem('books', JSON.stringify(books));
+    return bookData;
 }
 
+function removeBook (bookData) {
+    let books = getBooksData();
+    _.remove(books, book => book.id === bookData.id);
 
-export { getBooksData, setBookData };
+    localStorage.setItem('books', JSON.stringify(books));
+    return books;
+}
+
+export { getBooksData, setBookData, removeBook };

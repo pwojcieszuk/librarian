@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
+import { removeBook } from '../booksData';
 
 
 class BooksContainer extends Component {
@@ -8,7 +9,8 @@ class BooksContainer extends Component {
 
     this.state = { books: this.props.books };
 
-    this.handleAddBook = this.handleAddBook.bind(this)
+    this.handleAddBook = this.handleAddBook.bind(this);
+    this.handleRemoveBook = this.handleRemoveBook.bind(this);
   }
 
   handleAddBook(e) {
@@ -21,12 +23,17 @@ class BooksContainer extends Component {
 
   }
 
+  handleRemoveBook(bookData) {
+    const booksData = removeBook(bookData);
+    this.setState({
+      books: booksData
+    });
+  }
+
   render() {
     return (
       <div>
-        {this.state.books.map(function(bookData, i) {
-            return (<Book {...bookData} key={i} />)
-        })}
+        { this.state.books.map( (bookData, i) => { return (<Book {...bookData} key={i.toString()} handleRemoveBook={ this.handleRemoveBook } />) }, this)}
         <button onClick={ this.handleAddBook } >Dodaj ksiażkę</button>
       </div>
     );

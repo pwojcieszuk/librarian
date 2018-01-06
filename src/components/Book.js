@@ -20,7 +20,17 @@ class Book extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.saveBook = this.saveBook.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
-    this.cancelEdition = this.cancelEdition.bind(this);
+    this.removeBook = this.removeBook.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ book: {
+        title: nextProps.title,
+        author: nextProps.author,
+        ISBN: nextProps.ISBN,
+        id: nextProps.id
+      }
+    });
   }
 
   handleChange(e) {
@@ -40,7 +50,13 @@ class Book extends Component {
     // TODO make propTypes ISBN a number; make it required; notify if it already exists
     this.toggleEditMode();
     const book = this.state.book;
-    setBookData(book);
+    const savedBook = setBookData(book);
+
+    this.setState({ book: savedBook });
+  }
+
+  removeBook (e) {
+    this.props.handleRemoveBook(this.state.book);
   }
 
   toggleEditMode() {
@@ -61,10 +77,12 @@ class Book extends Component {
   }
 
   render() {
+    console.log(this.state.book);
     return (
       <article>
+        <button onClick={ this.removeBook } >Usuń</button>
         <dl>
-          <input type="hidden" name="id" data={ this.props.id } />
+          <input type="hidden" name="id" data={ this.state.book.id } />
           <Row title="Tytuł" name="title" data={ this.state.book.title } editMode={ this.state.editMode } handleChange={ this.handleChange } />
           <Row title="Autor" name="author" data={ this.state.book.author } editMode={ this.state.editMode } handleChange={ this.handleChange } />
           <Row title="ISBN" name="ISBN" data={ this.state.book.ISBN } editMode={ this.state.editMode } handleChange={ this.handleChange } />
