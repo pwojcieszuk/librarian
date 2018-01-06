@@ -7,7 +7,8 @@ function getBooksData () {
 };
 
 function createId (collection) {
-    const biggestId = _.last(_.orderBy(collection, ['id'])) || -1;
+    const lastRecord = _.last(_.orderBy(collection, ['id']));
+    const biggestId = lastRecord ? lastRecord.id : -1;
     return biggestId + 1;
 }
 
