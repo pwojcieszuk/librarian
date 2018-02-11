@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 class EditionButtons extends Component {
   render() {
     return (
-      <div>
+      <div className="editionButtons" >
         <button onClick={ this.props.saveAction } >Zapisz</button>
-        <button onClick={ this.props.cancelAction } >Anuluj</button>
+        <button className="cancel" onClick={ this.props.cancelAction } >Anuluj</button>
       </div>
     )
   }

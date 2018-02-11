@@ -1,0 +1,85 @@
+html {
+    box-sizing: border-box;
+    font-family: Arial;
+    font-size: 100%;
+}
+
+button {
+    background: #3498db;
+    border-radius: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.9;
+    padding: 0.5rem 1rem;
+    opacity: 0.9;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.delete {
+        background: transparent;
+        color: #000;
+        border: none;
+        padding: 0;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+
+        &:after {
+            content: "X";
+        }
+    }
+
+    &.cancel {
+        background: #827f7f;
+    }
+}
+
+.BooksContainer {
+    display: flex;
+    flex-flow: wrap;
+
+    article {
+        border: solid 1px #000;
+        border-radius: 1rem;
+        height: 15rem;
+        flex-grow: 1;
+        margin: 1rem;
+        width: 10rem;
+        padding: 1rem;
+        position: relative;
+
+        &.addBook {
+            cursor: pointer;
+            border: none;
+            background: #827f7f;
+            color: #fff;
+            font-size: 10rem;
+            line-height: 15rem;
+            opacity: 0.9;
+            text-align: center;
+            vertical-align: middle;
+
+            &:hover {
+              opacity: 1;
+            }
+        }
+
+        dl {
+            height: 11rem;
+            margin: 1rem 0;
+        }
+
+        dd {
+            margin: 0;
+            min-height: 1rem;
+        }
+
+        .editionButtons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

@@ -32,9 +32,9 @@ class BooksContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="BooksContainer">
         { this.state.books.map( (bookData, i) => { return (<Book {...bookData} key={i.toString()} handleRemoveBook={ this.handleRemoveBook } />) }, this)}
-        <button onClick={ this.handleAddBook } >Dodaj ksiażkę</button>
+        <article className="addBook" onClick={ this.handleAddBook } >+</article>
       </div>
     );
   }

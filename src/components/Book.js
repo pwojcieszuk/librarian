@@ -21,6 +21,7 @@ class Book extends Component {
     this.saveBook = this.saveBook.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.removeBook = this.removeBook.bind(this);
+    this.cancelEdition = this.cancelEdition.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -77,10 +78,9 @@ class Book extends Component {
   }
 
   render() {
-    console.log(this.state.book);
     return (
       <article>
-        <button onClick={ this.removeBook } >Usuń</button>
+        <button className="delete" onClick={ this.removeBook } ></button>
         <dl>
           <input type="hidden" name="id" data={ this.state.book.id } />
           <Row title="Tytuł" name="title" data={ this.state.book.title } editMode={ this.state.editMode } handleChange={ this.handleChange } />
