@@ -14,12 +14,11 @@ class BooksContainer extends Component {
   }
 
   handleAddBook(e) {
-    this.setState(prevState => {
-      prevState.books.push({
+    this.setState(prevState => prevState.books.push({
         editMode: true,
         book: {}
-      });
-    });
+      })
+    );
 
   }
 
